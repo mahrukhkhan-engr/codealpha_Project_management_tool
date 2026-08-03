@@ -1,9 +1,7 @@
 import axios from "axios";
 
-// Environment variable se URL uthayega, aur agar nahi milega to localhost par fallback karega
-const API_BASE_URL = import.meta.env.VITE_API_URL 
-  ? `${import.meta.env.VITE_API_URL}/api`
-  : "http://localhost:5000/api";
+// Direct Live Backend URL (Apne Vercel Backend URL se replace karein)
+const API_BASE_URL = "https://taskstream-backend-7u5w0y5h5-engr-mk.vercel.app"; 
 
 const API = axios.create({
   baseURL: API_BASE_URL,
@@ -12,7 +10,6 @@ const API = axios.create({
   },
 });
 
-// Interceptor to attach the JWT token to requests
 API.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
